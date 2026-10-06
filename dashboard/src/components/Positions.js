@@ -11,7 +11,7 @@ const Positions = () => {
         <table>
           <tr>
             <th>Product</th>
-            <th>Instrument</th>
+            <th>Stock Name</th>
             <th>Qty.</th>
             <th>Avg.</th>
             <th>LTP</th>

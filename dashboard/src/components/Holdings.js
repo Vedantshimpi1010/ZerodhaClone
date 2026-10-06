@@ -59,7 +59,7 @@ const Holdings = () => {
       <div className="order-table">
         <table>
           <tr>
-            <th>Instrument</th>
+            <th>Stock Name</th>
             <th>Qty.</th>
             <th>Avg. cost</th>
             <th>LTP</th>
