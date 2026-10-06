@@ -14,7 +14,9 @@ export const GeneralContextProvider = ({ children }) => {
     []
   );
 
-  return <GeneralContext.Provider value={value}>{children}</GeneralContext.Provider>;
+  return (
+    <GeneralContext.Provider value={value}>{children}</GeneralContext.Provider>
+  );
 };
 
 export default GeneralContext;

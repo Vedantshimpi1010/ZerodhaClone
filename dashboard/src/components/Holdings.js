@@ -1,17 +1,25 @@
 import React, { useState, useEffect } from "react";
-import axios, { all } from "axios";
+import axios from "axios";
 import { VerticalGraph } from "./VerticalGraph";
-
-// import { holdings } from "../data/data";
+import { holdings as fallbackHoldings } from "../data/data";
 
 const Holdings = () => {
-  const [allHoldings, setAllHoldings] = useState([]);
+  const [allHoldings, setAllHoldings] = useState(fallbackHoldings);
 
   useEffect(() => {
-    axios.get("http://localhost:3002/allHoldings").then((res) => {
-      // console.log(res.data);
-      setAllHoldings(res.data);
-    });
+    const fetchHoldings = async () => {
+      try {
+        const res = await axios.get("http://localhost:3002/allHoldings");
+        if (Array.isArray(res.data) && res.data.length > 0) {
+          setAllHoldings(res.data);
+        }
+      } catch (error) {
+        console.warn("Backend unavailable, using local holdings data.", error);
+        setAllHoldings(fallbackHoldings);
+      }
+    };
+
+    fetchHoldings();
   }, []);
 
   // const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
